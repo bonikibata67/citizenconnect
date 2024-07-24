@@ -1,0 +1,70 @@
+
+
+<div class="main-container">
+  <div class="content-box">
+    <div class="header-box">
+      <h1>AI SUMMARY</h1>
+    </div>
+    
+    <div class="chat-section">
+      <div class="ai-chat-container">
+        <!-- Chat Interface -->
+        <div class="chat-box">
+          <div *ngFor="let message of messages">
+            <div [ngClass]="{'user-message': message.isUser, 'bot-message': !message.isUser}">
+              {{ message.text }}
+            </div>
+          </div>
+        </div>
+        <!-- Input for User Question -->
+        <div class="input-section">
+          <input type="text" placeholder="Ask a question..." />
+          <button >Send</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- <div class="aisummary-page">
+    <div class="header">
+      <h1>AI Incident Summaries</h1>
+    </div>
+    <div class="input-section">
+      <input type="text"  placeholder="Ask a question..." />
+      <button >Send</button>
+    </div>
+    
+    <div class="content">
+      
+    <div class="incident">
+      <h2>Lorem Ipsum Incident</h2>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+      <div class="summary">
+        <h3>AI Summary</h3>
+        <p>[Placeholder for AI summary]</p>
+      </div>
+      <img src="https://via.placeholder.com/150" alt="Lorem Ipsum Incident Image">
+    </div>
+    
+  
+    <div class="incident">
+      <h2>Another Incident</h2>
+      <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.</p>
+      <div class="summary">
+        <h3>AI Summary</h3>
+        <p>[Placeholder for AI summary]</p>
+      </div>
+      <img src="https://via.placeholder.com/150" alt="Another Incident Image">
+    </div>
+      <div *ngFor="let incident of incidents" class="incident">
+        <h2>{{ incident.title }}</h2>
+        <p>{{ incident.description }}</p>
+        <div class="summary">
+          <h3>AI Summary</h3>
+          <p>{{ incident.aiSummary }}</p>
+        </div>
+      </div>
+    </div>
+  </div> -->
+  

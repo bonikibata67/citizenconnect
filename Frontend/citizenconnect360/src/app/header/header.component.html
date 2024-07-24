@@ -1,0 +1,26 @@
+<div class="maincontainer">
+    <div class="connect">
+        CITIZENCONNECT360
+    </div>
+    <div class="mainheader-container">
+        <nav class="header-container">
+            <a routerLink="/home" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Home</a>
+            <a routerLink="/educate" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Educate</a>
+            <a routerLink="/views" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Views</a>
+            <a routerLink="/incidents" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Incidents</a>
+            <a routerLink="/ReportIncident" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">ReportIncident</a>
+            <a routerLink="/polls" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Polls</a>
+            <a routerLink="/createpoll" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Createpoll</a>
+            <a routerLink="/Aisummary" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Aisummary</a>
+            <a routerLink="/login" routerLinkActive="active" *ngIf="!authService.isLoggedIn()">Login</a>
+            <a routerLink="/signup" routerLinkActive="active" *ngIf="!authService.isLoggedIn()">Register</a>
+            <a href="#" (click)="logout()" *ngIf="authService.isLoggedIn()">Logout</a>
+        </nav>
+    
+    </div>
+
+</div>
+
+
+
+  

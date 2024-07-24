@@ -1,0 +1,44 @@
+<div class="main-container">
+  <div class="polls-container">
+    <div class="polls-header">
+      <h1>ACTIVE POLLS</h1>
+    </div>
+    <div *ngFor="let poll of polls; let i = index" class="poll">
+      <h2>Poll Title: {{ poll.title }}</h2>
+      <p>{{ poll.question }}</p>
+      <div class="poll-options">
+        <label class="poll-option" *ngFor="let option of poll.pollOption">
+          <input type="radio" name="poll-{{ poll.id }}" (click)="vote(poll, option)">
+          {{ option.label }} ({{ option.percentage }}%)
+          <div class="progress-bar" [style.width.%]="option.percentage" [style.background-color]="getColor(option.label)"></div>
+        </label>
+      </div>
+      <button (click)="deletePoll(poll.id)">Delete Poll</button>
+    </div>
+  </div>
+</div>
+
+
+
+
+<!-- 
+<div class="main-container">
+  <div class="polls-container">
+    <div class="polls-header">
+      <h1>ACTIVE POLLS</h1>
+    </div>
+    <div *ngFor="let poll of polls; let i = index" class="poll">
+      <h2>Poll Title: {{ poll.title }}</h2>
+      <p>{{ poll.question }}</p>
+      <div class="poll-options">
+        <label class="poll-option" *ngFor="let option of poll.options">
+          <input type="radio" name="{{ poll.title }}" (click)="vote(poll, option)">
+          {{ option.label }} ({{ option.percentage }}%)
+          <div class="progress-bar" [style.width.%]="option.percentage" [style.background-color]="getColor(option.label)"></div>
+        </label>
+      </div>
+      <button (click)="deletePoll(poll.id)">Delete Poll</button>
+    </div>
+  </div>
+</div> -->
+

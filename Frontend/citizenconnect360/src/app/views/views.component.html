@@ -1,0 +1,47 @@
+<div class="main-container">
+    <div class="views-box" *ngFor="let view of views">
+      <div class="user-info">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSWwfGUCDwrZZK12xVpCOqngxSpn0BDpq6ewQ&s" alt="Profile Picture" class="profile-picture">
+        <div class="user-details">
+          <p>Username: {{ view.username }}</p>
+          <p>Location: {{ view.location }}</p>
+          <p>Role: {{ view.role }}</p>
+          <p>Created At: {{ view.createdAt | date:'short' }}</p> <!-- Format date -->
+        </div>
+      </div>
+      <div class="user-view">
+        <p>{{ view.content }}</p>
+      </div>
+    </div>
+    <div class="input-container">
+      <label for="view-input">Type your view:</label>
+      <input type="text" id="view-input" class="view-input" [(ngModel)]="newView">
+      <button class="submit-button" (click)="addView()">Submit</button>
+    </div>
+  </div>
+  
+
+
+<!-- <div class="main-container">
+    
+
+  <div class="views-box" *ngFor="let view of views">
+      <div class="user-info">
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSWwfGUCDwrZZK12xVpCOqngxSpn0BDpq6ewQ&s" alt="User A" class="profile-picture">
+          <div class="user-details">
+              <p>Username: User A</p>
+              <p>Location: Nairobi, Kenya</p>
+              <p>Role: Citizen</p>
+          </div>
+      </div>
+      <div class="user-view">
+          <p>{{ view }}</p>
+      </div>
+  </div>
+  <div class="input-container">
+    <label for="view-input">Type your view:</label>
+    <input type="text" id="view-input" class="view-input" [(ngModel)]="newView">
+    <button class="submit-button" (click)="addView()">Submit</button>
+</div>
+  
+</div> -->

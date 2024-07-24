@@ -1,0 +1,29 @@
+<div class="main-container">
+    <div class="content-box">
+      <div class="header-box">
+        <h1>EDUCATE</h1>
+      </div>
+      <!-- <div class="upload-section">
+        <label for="pdfUpload">Upload PDF:</label>
+        <input type="file" id="pdfUpload" (change)="onFileSelected($event)">
+      </div> -->
+      <div class="chat-section">
+        <div class="ai-chat-container">
+          <!-- Chat Interface -->
+          <div class="chat-box">
+            <div *ngFor="let message of messages">
+              <div [ngClass]="{'user-message': message.isUser, 'bot-message': !message.isUser}">
+                {{ message.text }}
+              </div>
+            </div>
+          </div>
+          <!-- Input for User Question -->
+          <div class="input-section">
+            <input type="text" [(ngModel)]="userQuestion" placeholder="Ask a question..." />
+            <button (click)="sendQuestion()">Send</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  

@@ -1,0 +1,17 @@
+-- CREATE PROCEDURE AddView
+--     @Username VARCHAR(50),
+--     @Location VARCHAR(100),
+--     @Role VARCHAR(50),
+--     @ViewText VARCHAR(MAX)
+-- AS
+-- BEGIN
+--     -- Ensure that none of the parameters are NULL
+--     IF @Username IS NULL OR @Location IS NULL OR @Role IS NULL OR @ViewText IS NULL
+--     BEGIN
+--         RAISERROR('One or more input parameters are NULL', 16, 1);
+--         RETURN;
+--     END
+
+--     INSERT INTO Views (Username, Location, Role, ViewText)
+--     VALUES (@Username, @Location, @Role, @ViewText);
+-- END;

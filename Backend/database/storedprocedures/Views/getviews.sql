@@ -1,0 +1,6 @@
+-- GO
+-- CREATE PROCEDURE GetViews
+-- AS
+-- BEGIN
+--     SELECT * FROM Views;
+-- END

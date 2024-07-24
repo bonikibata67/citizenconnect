@@ -1,0 +1,73 @@
+<div class="admin-dashboard">
+  <div class="manage-users">
+    <div class="header">
+      <h2>Manage Users</h2>
+    </div>
+    <div class="user-inputs">
+      <input type="text" placeholder="Username" [(ngModel)]="usernameToDelete">
+      <input type="text" placeholder="Email" [(ngModel)]="emailToDelete">
+      <input type="text" placeholder="Role" [(ngModel)]="roleToDelete">
+      <button (click)="deleteUser()">Delete User</button>
+    </div>
+  </div>
+  <div class="manage-roles">
+    <div class="header">
+      <h2>Manage Roles</h2>
+    </div>
+    <div class="grid">
+      <div *ngFor="let user of users$ | async" class="user-details">
+        <p>ID: {{ user.id }}</p>
+        <p>Username: {{ user.username }}</p>
+        <p>Email: {{ user.email }}</p>
+        <p>Current Role: {{ user.role }}</p>
+        <div class="actions">
+          <button class="approve">Approve</button>
+          <button class="reject">Reject</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <p *ngIf="message">{{message}}</p>
+  <p *ngIf="error$ | async">{{error$ | async}}</p>
+</div>
+
+
+<!-- 
+<div class="admin-dashboard">  
+  
+    <div class="manage-users">
+      <div class="header">
+        <h2>Manage Users</h2>      
+      </div>
+      <div class="user-inputs">
+        <input type="text" placeholder="Username" [(ngModel)]="usernameToDelete">
+        <input type="text" placeholder="Email" [(ngModel)]="emailToDelete">
+        <input type="text" placeholder="Role" [(ngModel)]="roleToDelete">
+        <button (click)="deleteUser()">Delete User</button>
+      </div>
+    
+    </div>
+  
+    <div class="manage-roles">
+      <div class="header">
+        <h2>Manage Roles</h2>
+      </div>
+      <div class="grid">
+        <div *ngFor="let user of users" class="user-details">
+          <p>ID: {{ user.id }}</p>
+          <p>Username: {{ user.username }}</p>
+          <p>Email: {{ user.email }}</p>
+          <p>Current Role: {{ user.role }}</p>
+          <p>Requested Role: </p>
+          <div class="actions">
+            <button class="approve">Approve</button>
+            <button class="reject">Reject</button>
+          </div>
+        </div>
+
+      </div>
+
+      
+    </div>
+  </div> -->
+  

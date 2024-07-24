@@ -1,0 +1,33 @@
+<p *ngIf="error$ | async as error" class="error">{{error}}</p>
+<p *ngIf="loading$ | async" class="loading">Processing...</p>
+
+<div class="parent">
+  <div class="form-wrapper sign-up">
+    <form [formGroup]="SignUpForm" (ngSubmit)="onSubmit()">
+      <h2>Sign Up</h2>
+      <div class="input-group">
+        <input type="text" formControlName="Username" required>
+        <label for="Username">Username</label>
+      </div>
+      <div class="input-group">
+        <input type="email" formControlName="Email" required>
+        <label for="email">Email</label>
+      </div>
+      <div class="input-group">
+        <input type="password" formControlName="Password" required>
+        <label for="password">Password</label>
+      </div>
+      <input type="hidden" formControlName="Role" value="citizen"> <!-- Hidden field for Role -->
+      <button type="submit" [disabled]="SignUpForm.invalid" class="btn">Sign Up</button>
+      <div class="sign-link">
+        <p>Already have an account? <a routerLink="/login" class="signIn-link">Log In</a></p>
+      </div>
+      
+    </form>
+  </div>
+</div>
+
+
+
+
+  

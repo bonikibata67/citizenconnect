@@ -1,0 +1,124 @@
+/* Base styles */
+.home-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh; /* Full viewport height */
+    position: relative; /* Ensure relative positioning for children */
+    background-color: rgba(54, 245, 54, 0.2); /* Light green background with 20% opacity */
+  }
+  
+  .background-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('https://ln.run/9Hz9o');
+    background-size: cover;
+    background-position: center;
+    z-index: 1;
+  }
+  
+  .content-wrapper {
+    background-color: #cce6f4; /* Light blue background */
+    padding: 20px;
+    border-radius: 10px;
+    max-width: 800px;
+    text-align: center;
+    position: relative; /* Ensure content stays above the background image */
+    z-index: 1; /* Ensure content is above background */
+  }
+  
+  .content-wrapper h1 {
+    margin-bottom: 20px;
+  }
+  
+  .content-wrapper p {
+    line-height: 1.6;
+  }
+  
+  button {
+    margin: 10px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  
+  .login-button {
+    background-color: rgba(54, 245, 54, 0.5); /* Light green with 50% opacity */
+    color: black;
+  }
+  
+  .register-button {
+    background-color:rgba(54, 245, 54, 0.5); /* Light blue */
+    color: black;
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 1024px) {
+    .content-wrapper {
+      padding: 15px;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .content-wrapper {
+      padding: 10px;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .content-wrapper {
+      max-width: 90%;
+    }
+  }
+  
+
+/* .home-content {
+    position: relative;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #333;
+}
+
+.background-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('https://ln.run/9Hz9o');
+    background-size: cover;
+    background-position: center;
+    z-index: 1;
+}
+
+.content-wrapper {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    padding: 20px;
+    background-color: rgba(204, 230, 244, 0.8); 
+    width: 80%;
+    max-width: 800px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    font-size: 2rem; 
+    margin-bottom: 10px;
+}
+
+p {
+    font-size: 1.5rem; 
+    margin: 10px 0;
+} */
+
+

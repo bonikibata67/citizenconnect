@@ -1,0 +1,8 @@
+CREATE TABLE Views (
+    ViewID INT PRIMARY KEY IDENTITY(1,1),
+    Username VARCHAR(50) NOT NULL,
+    Location VARCHAR(100),
+    Role VARCHAR(50),
+    ViewText VARCHAR(MAX),
+    CreatedAt DATETIME DEFAULT GETDATE()
+);

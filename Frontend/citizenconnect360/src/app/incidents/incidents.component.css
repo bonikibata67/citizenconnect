@@ -1,0 +1,90 @@
+.main-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(54, 245, 54, 0.2); /* Light green background with 20% opacity */
+    padding: 5px;
+    /* height: 100vh; */
+  }
+  
+  .header-box {
+    /* background-color: #CCE6F4; */
+    background-color:  #bbadff; /* Light blue background */
+    padding: 5px;
+    text-align: center;
+    border-radius: 10px;
+    width: 80%;
+    max-width: 800px;
+    margin-bottom: 20px;
+  }
+  
+  .incidents-container {
+    width: 80%;
+    max-width: 800px;
+    /* background-color: ; */
+    /* gap: 10px; */
+  }
+  
+  .incident-box {
+    background-color: #CCE6F4; /* White background */
+    padding: 5px;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+    width: 100%;
+    height: 40vh; /* Set height to 25% of the viewport height */
+  }
+  
+  .incident-image {
+    width: 100%;
+    height: 70%; /* Set height to 60% of the incident box */
+    object-fit: cover;
+    margin-bottom: 10px;
+    border-radius: 10px;
+  }
+  
+  .incident-details {
+    height: 30%;
+    text-align: center;
+    flex: 1; /* Take remaining space */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  
+  /* Media Queries for Responsive Design */
+  @media (max-width: 768px) {
+    .incident-box {
+      height: auto; /* Allow height to adjust automatically */
+    }
+  
+    .incident-image {
+      height: auto; /* Allow height to adjust automatically */
+      max-height: 40vh; /* Limit image height to 40% of viewport height */
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .header-box {
+      width: 100%; /* Full width on smaller screens */
+    }
+  
+    .incidents-container {
+      width: 100%; /* Full width on smaller screens */
+    }
+  
+    .incident-box {
+      height: auto; /* Allow height to adjust automatically */
+      padding: 10px; /* Reduce padding for smaller screens */
+    }
+  
+    .incident-image {
+      height: auto; /* Allow height to adjust automatically */
+      max-height: 30vh; /* Limit image height to 30% of viewport height */
+    }
+  }
+  

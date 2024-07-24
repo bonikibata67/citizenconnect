@@ -1,0 +1,45 @@
+<div class="main-container">
+  <div class="header-box">
+    <h1>VIEW INCIDENTS</h1>
+  </div>
+  <div class="incidents-container">
+    <div class="incident-box">
+      <img src="https://cdn.pixabay.com/photo/2019/07/13/21/07/protestor-4335720_640.jpg" alt="Incident Image" class="incident-image">
+      <div class="incident-details">
+        <p><strong>Incident Title:</strong> Lorem Ipsum Incident</p>
+        <p><strong>Incident Description:</strong> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+      </div>
+    </div>
+    <div *ngFor="let incident of incidents" class="incident-box">
+      <img [src]="incident.imageUrl" alt="Incident Image" class="incident-image">
+      <div class="incident-details">
+        <p><strong>Incident Title:</strong> {{ incident.title }}</p>
+        <p><strong>Incident Description:</strong> {{ incident.description }}</p>
+      </div>
+    </div>
+    <div class="incident-box">
+      <img src="https://cdn.pixabay.com/photo/2017/08/06/10/32/rally-2591087_640.jpg" alt="Incident Image" class="incident-image">
+      <div class="incident-details">
+        <p><strong>Incident Title:</strong> Another Incident</p>
+        <p><strong>Incident Description:</strong> Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- <div class="main-container">
+    <div class="header-box">
+      <h1>VIEW INCIDENTS</h1>
+    </div>
+    <div class="incidents-container">
+      <div *ngFor="let incident of incidents" class="incident-box">
+        <img [src]="incident.imageUrl" alt="Incident Image" class="incident-image">
+        <div class="incident-details">
+          <p><strong>Incident Title:</strong> {{ incident.title }}</p>
+          <p><strong>Incident Description:</strong> {{ incident.description }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+   -->

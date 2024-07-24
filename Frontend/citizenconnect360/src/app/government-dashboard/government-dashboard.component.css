@@ -1,0 +1,84 @@
+/* Base styles */
+.government-dashboard {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative; /* Ensure relative positioning for children */
+  height: 100vh;
+  background-color: rgba(54, 245, 54, 0.1);
+}
+
+.background-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 60%;
+  height: 100%;
+  background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQjxWpHjCbrLO9F6jDFMKvPGQ3VyAMPG2ofXQ&s");
+  background-size: cover;
+  background-position: center;
+  /* filter: blur(1px); Optional: add a slight blur effect for better readability of content */
+  z-index: -1;
+  opacity: 2;
+  transform: translateX(30%);
+  /* position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  height: 100%;
+  background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQjxWpHjCbrLO9F6jDFMKvPGQ3VyAMPG2ofXQ&s');
+  background-size: cover;
+  background-position: center;
+  z-index: -1;
+  opacity: 2; */
+}
+
+.content {
+  background-color: #cce6f4; /* Light blue background for content */
+  padding: 20px;
+  border-radius: 10px;
+  max-width: 800px;
+  text-align: center;
+  position: relative; /* Ensure content stays above the background image */
+  z-index: 1; /* Ensure content is above background */
+}
+
+.content h1 {
+  margin-bottom: 20px;
+}
+
+.content p {
+  line-height: 1.6;
+}
+
+/* Responsive adjustments */
+@media (max-width: 1024px) {
+  .content {
+    padding: 15px;
+  }
+
+  .background-image {
+    left: 50%;
+    width: 100%;
+    transform: translateX(-50%);
+  }
+}
+
+@media (max-width: 768px) {
+  .content {
+    padding: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .content {
+    max-width: 90%;
+  }
+
+  .background-image {
+    left: 50%;
+    width: 100%;
+    transform: translateX(-50%);
+  }
+}

@@ -1,0 +1,27 @@
+<div class="main-container">
+    <div class="report-box">
+        <div class="header-box">
+            <h1>REPORT INCIDENT</h1>
+          </div>
+          <div class="form-container">
+            <form (submit)="onSubmit()">
+              <div class="form-group">
+                <label for="incident-title">Incident Title:</label>
+                <input type="text" id="incident-title" [(ngModel)]="incidentTitle" name="title" required>
+              </div>
+              <div class="form-group">
+                <label for="incident-description">Incident Description:</label>
+                <textarea id="incident-description" [(ngModel)]="incidentDescription" name="description" required></textarea>
+              </div>
+              <div class="form-group">
+                <label for="incident-media">Upload Media URL:</label>
+                <input type="text" id="incident-media" [(ngModel)]="incidentMediaUrl" name="media">
+              </div>
+              <button type="submit" class="submit-button">Submit</button>
+            </form>
+          </div>
+
+    </div>
+    
+  </div>
+  
