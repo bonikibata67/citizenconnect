@@ -47,7 +47,7 @@ export const loginUser = async (req: Request, res: Response) => {
         const user = await dbHelper.getUser(Username);
 
         if (!user) {
-            return res.status(401).json({ error: 'Invalid username or password' });
+            return+ res.status(401).json({ error: 'Invalid username or password' });
         }
 
         const isPasswordValid = await bcrypt.compare(Password, user.Password);
