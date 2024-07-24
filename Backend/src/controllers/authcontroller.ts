@@ -40,7 +40,6 @@ export const registerUser = async (req: Request, res: Response) => {
     }
 };
 
-// User login
 export const loginUser = async (req: Request, res: Response) => {
     const { Username, Password } = req.body;
 

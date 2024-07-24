@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { View } from '../models/view'; // Adjust path if necessary
 
@@ -7,7 +7,7 @@ import { View } from '../models/view'; // Adjust path if necessary
   providedIn: 'root'
 })
 export class ViewService {
-  private apiUrl = 'http://localhost:4000/views'; // Replace with your actual backend URL
+  private apiUrl = 'http://localhost:4000/views';
 
   constructor(private http: HttpClient) {}
 
@@ -15,16 +15,7 @@ export class ViewService {
     return this.http.get<View[]>(this.apiUrl);
   }
 
-  addView(view: Omit<View, 'id'>): Observable<View> {
+  addView(view: View): Observable<View> {
     return this.http.post<View>(this.apiUrl, view);
   }
 }
-// import { Injectable } from '@angular/core';
-
-// @Injectable({
-//   providedIn: 'root'
-// })
-// export class ViewsService {
-
-//   constructor() { }
-// }

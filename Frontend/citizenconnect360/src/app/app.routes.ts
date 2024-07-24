@@ -2,7 +2,7 @@ import {  Routes } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
-import { ViewsComponent } from './views/views.component';
+import { ViewComponent } from './views/views.component';
 import { IncidentsComponent } from './incidents/incidents.component';
 import { PollsComponent } from './polls/polls.component';
 import { AuthGuard } from './guard/auth.guard';
@@ -26,7 +26,7 @@ const routes: Routes = [
   { path: 'home', component: HomeComponent,  },
    {path:'login',component:LoginComponent},
   {path: 'signup',component:SignupComponent},
-  { path: 'views', component: ViewsComponent},
+  { path: 'views', component: ViewComponent},
   { path: 'polls', component: PollsComponent},  
   { path: 'ReportIncident', component: ReportIncidentComponent, },  
   { path: 'educate', component: EducateComponent},  

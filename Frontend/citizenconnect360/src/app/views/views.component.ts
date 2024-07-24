@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { View } from '../models/view'; 
@@ -9,72 +9,69 @@ import { ViewService } from '../services/views.service';
 @Component({
   selector: 'app-views',
   standalone: true,
-  imports: [RouterModule, CommonModule, FormsModule],
+  imports: [RouterModule, CommonModule, FormsModule, ReactiveFormsModule],
   templateUrl: './views.component.html',
   styleUrls: ['./views.component.css']
 })
-export class ViewsComponent implements OnInit {
+export class ViewComponent implements OnInit {
   views: View[] = [];
-  newView: string = '';
+  viewForm: FormGroup;
 
-  constructor(private viewService: ViewService) {}
-
-  ngOnInit(): void {
-    this.fetchViews();
+  constructor(private viewService: ViewService, private fb: FormBuilder) {
+    this.viewForm = this.fb.group({
+      username: [{ value: '', disabled: true }, Validators.required],
+      location: [{ value: '', disabled: true }, Validators.required],
+      role: [{ value: '', disabled: true }, Validators.required],
+      viewText: ['', Validators.required]
+    });
   }
 
-  fetchViews(): void {
-    this.viewService.getViews().subscribe({
-      next: (views) => this.views = views,
-      error: (err) => console.error('Failed to fetch views', err)
+  ngOnInit(): void {
+    this.loadViews();
+    this.setLoggedInUser(); // Set logged-in user details
+  }
+
+  loadViews(): void {
+    this.viewService.getViews().subscribe((views: View[]) => {
+      this.views = views;
+    });
+  }
+
+  setLoggedInUser(): void {
+    const loggedInUser = {
+      username: 'citizen1', // Example username, replace with actual data
+      location: 'Nyeri, Kenya',
+      role: 'Citizen'
+    };
+    this.viewForm.patchValue({
+      username: loggedInUser.username,
+      location: loggedInUser.location,
+      role: loggedInUser.role
     });
   }
 
   addView(): void {
-    if (this.newView.trim()) {
-      const newView: Omit<View, 'id'> = {
-        username: 'current_user', // Replace with actual user info
-        location: 'current_location', // Replace with actual user info
-        role: 'current_role', // Replace with actual user info
-        content: this.newView,
-        createdAt: new Date().toISOString() // Set to current date for now
-      };
-
-      this.viewService.addView(newView).subscribe({
-        next: () => {
-          this.newView = '';
-          this.fetchViews(); // Refresh the list after adding a new view
-        },
-        error: (err) => console.error('Failed to add view', err)
-      });
+    if (this.viewForm.invalid) {
+      console.log('Form is invalid:', this.viewForm);
+      return;
     }
+  
+    const newView: View = {
+      ...this.viewForm.getRawValue()
+    };
+  
+    console.log('Submitting new view:', newView);
+  
+    this.viewService.addView(newView).subscribe(
+      () => {
+        console.log('View added successfully');
+        this.loadViews(); // Reload views after adding a new one
+        this.viewForm.reset(); // Clear the form
+        this.setLoggedInUser(); // Reset the logged-in user details
+      },
+      error => {
+        console.error('Error adding view:', error);
+      }
+    );
   }
 }
-
-
-// import { CommonModule } from '@angular/common';
-// import { Component } from '@angular/core';
-// import { FormsModule } from '@angular/forms';
-// import { Router, RouterModule, ActivatedRoute } from '@angular/router';
-
-// @Component({
-//   selector: 'app-views',
-//   standalone: true,
-//   imports: [ RouterModule, CommonModule, FormsModule ],
-//   templateUrl: './views.component.html',
-//   styleUrl: './views.component.css'
-// })
-// export class ViewsComponent {
-//   views: string[] = [
-//     "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
-//   ];
-//   newView: string = '';
-
-//   addView() {
-//     if (this.newView.trim()) {
-//       this.views.push(this.newView);
-//       this.newView = '';
-//     }
-//   }
-
-// }

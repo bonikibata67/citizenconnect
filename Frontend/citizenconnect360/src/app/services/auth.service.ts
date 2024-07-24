@@ -17,36 +17,23 @@ export class AuthService {
 
   constructor(private http: HttpClient) {}
   loginUsers(user: loginuser): Observable<loginresponse> {
+    console.log(user);    
     return this.http.post<loginresponse>(`${this.BASE_URL}login`, user).pipe(
-      tap((res) => {
-        if (res.token) {
-          localStorage.setItem('token', res.token);
-        }
-      }),
-      catchError((error: HttpErrorResponse) => {
-        console.error('Login error:', error);
-        return of({
-          token: '',
-          user: null,
-          message: error.error.message || 'Login failed',
-        });
-      })
+        tap((res) => {
+            if (res.token) {
+                localStorage.setItem('token', res.token);
+            }
+        }),
+        catchError((error: HttpErrorResponse) => {
+            console.error('Login error:', error);
+            return of({
+                token: '',
+                user: null,
+                message: error.error.message || 'Login failed',
+            });
+        })
     );
-  }
-
-  // loginUsers(user: loginuser): Observable<loginresponse> {
-  //   console.log(user)
-  //   return this.http.post<loginresponse>(`${this.BASE_URL}login`, user)
-  //   .pipe(
-  //     tap((res) => {
-  //       if (res.token) {
-  //         localStorage.setItem('token', res.token);
-  //       }
-  //     }),
-
-     
-  //   );
-  // }
+}
 
 
 

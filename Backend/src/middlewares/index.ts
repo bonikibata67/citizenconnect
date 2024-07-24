@@ -21,12 +21,12 @@ export const verifyToken = (req: Request, res: Response, next: NextFunction) => 
     }
 };
 
-export const ensureAdmin = (req: Request, res: Response, next: NextFunction) => {
-    if (req.body.user.role !== 3) {
-        return res.status(403).json({ message: 'Access denied. Admins only.' });
-    }
-    next();
-};
+// export const ensureAdmin = (req: Request, res: Response, next: NextFunction) => {
+//     if (req.body.user.role !== 3) {
+//         return res.status(403).json({ message: 'Access denied. Admins only.' });
+//     }
+//     next();
+// };
 
 
 

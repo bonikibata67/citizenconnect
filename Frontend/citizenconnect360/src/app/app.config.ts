@@ -6,7 +6,8 @@ import { provideStoreDevtools } from '@ngrx/store-devtools';
 import { provideHttpClient, withInterceptorsFromDi,withInterceptors, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthEffects } from './state/effects/auth.effects';
 import { authReducer } from './state/reducers/auth.reducers';
-import { LoggingInterceptor } from './interceptors/logininterceptor';
+// import { LoggingInterceptor } from './interceptors/logininterceptor';
+import { FormsModule } from '@angular/forms';
 import routes from './app.routes';
 
 export const appConfig: ApplicationConfig = {
@@ -24,7 +25,7 @@ export const appConfig: ApplicationConfig = {
       logOnly: !isDevMode()
     }),
     provideEffects([AuthEffects]),
-    { provide: HTTP_INTERCEPTORS, useClass: LoggingInterceptor, multi: true }  // Register the interceptor here
+    // { provide: HTTP_INTERCEPTORS, useClass: LoggingInterceptor, multi: true }  // Register the interceptor here
   ]
 };
 

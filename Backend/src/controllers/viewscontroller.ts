@@ -8,21 +8,22 @@ const dbHelper = new DbHelper();
 
 export const addView = async (req: Request, res: Response) => {
     const { Username, Location, Role, ViewText } = req.body;
-
+  
     console.log("Request Body: ", req.body);
-
+  
     if (!Username || !Location || !Role || !ViewText) {
-        return res.status(400).json({ message: 'All fields are required' });
+      console.error('Validation failed:', req.body);
+      return res.status(400).json({ message: 'All fields are required' });
     }
-
+  
     try {
-        await dbHelper.addView(Username, Location, Role, ViewText);
-        res.status(201).json({ message: 'View added successfully' });
+      await dbHelper.addView(Username, Location, Role, ViewText);
+      res.status(201).json({ message: 'View added successfully' });
     } catch (error) {
-        console.error('Error adding view:', error);
-        res.status(500).json({ error: 'Failed to add view' });
+      console.error('Error adding view:', error);
+      res.status(500).json({ error: 'Failed to add view' });
     }
-};
+  };
 
 
 export const getViews = async (req: Request, res: Response) => {

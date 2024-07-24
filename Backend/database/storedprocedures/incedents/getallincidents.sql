@@ -7,3 +7,5 @@ GO
 -- BEGIN
 --     SELECT * FROM Incidents;
 -- END;
+
+USE CITIZENCONNECT
