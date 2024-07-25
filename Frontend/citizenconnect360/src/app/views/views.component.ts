@@ -5,7 +5,6 @@ import { RouterModule } from '@angular/router';
 import { View } from '../models/view'; 
 import { ViewService } from '../services/views.service';
 
-
 @Component({
   selector: 'app-views',
   standalone: true,
@@ -16,6 +15,7 @@ import { ViewService } from '../services/views.service';
 export class ViewComponent implements OnInit {
   views: View[] = [];
   viewForm: FormGroup;
+  showAllViews = false;
 
   constructor(private viewService: ViewService, private fb: FormBuilder) {
     this.viewForm = this.fb.group({
@@ -28,12 +28,22 @@ export class ViewComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadViews();
-    this.setLoggedInUser(); // Set logged-in user details
+    this.setLoggedInUser();
   }
 
   loadViews(): void {
     this.viewService.getViews().subscribe((views: View[]) => {
       this.views = views;
+    });
+  }
+
+  toggleViews(): void {
+    this.showAllViews = !this.showAllViews;
+    const viewBoxes = document.querySelectorAll('.views-box');
+    viewBoxes.forEach((viewBox, index) => {
+      if (index >= 3) {
+        viewBox.classList.toggle('hidden', !this.showAllViews);
+      }
     });
   }
 
@@ -55,19 +65,24 @@ export class ViewComponent implements OnInit {
       console.log('Form is invalid:', this.viewForm);
       return;
     }
-  
+
+    // Transform the form data to match the backend's expected property names
+    const formValue = this.viewForm.getRawValue();
     const newView: View = {
-      ...this.viewForm.getRawValue()
+      Username: formValue.username,
+      Location: formValue.location,
+      Role: formValue.role,
+      ViewText: formValue.viewText
     };
-  
+
     console.log('Submitting new view:', newView);
-  
+
     this.viewService.addView(newView).subscribe(
       () => {
         console.log('View added successfully');
-        this.loadViews(); // Reload views after adding a new one
-        this.viewForm.reset(); // Clear the form
-        this.setLoggedInUser(); // Reset the logged-in user details
+        this.loadViews();
+        this.viewForm.reset();
+        this.setLoggedInUser();
       },
       error => {
         console.error('Error adding view:', error);
@@ -75,3 +90,4 @@ export class ViewComponent implements OnInit {
     );
   }
 }
+

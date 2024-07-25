@@ -22,7 +22,7 @@ export const adminReducer = createReducer(
   on(AdminActions.deleteUser, state => ({ ...state, loading: true })),
   on(AdminActions.deleteUserSuccess, (state, { username }) => ({
     ...state,
-    users: state.users.filter(user => user.username !== username),
+    users: state.users.filter(user => user.Username !== username),
     loading: false,
   })),
   on(AdminActions.deleteUserFailure, (state, { error }) => ({ ...state, error, loading: false }))

@@ -9,33 +9,33 @@ import {
 } from '../models/auth';
 import { catchError, Observable, of, tap } from 'rxjs';
 
+import { Router } from '@angular/router';
+
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
   private readonly BASE_URL = 'http://localhost:4000/auth/';
 
-  constructor(private http: HttpClient) {}
-  loginUsers(user: loginuser): Observable<loginresponse> {
-    console.log(user);    
-    return this.http.post<loginresponse>(`${this.BASE_URL}login`, user).pipe(
-        tap((res) => {
-            if (res.token) {
-                localStorage.setItem('token', res.token);
-            }
-        }),
-        catchError((error: HttpErrorResponse) => {
-            console.error('Login error:', error);
-            return of({
-                token: '',
-                user: null,
-                message: error.error.message || 'Login failed',
-            });
-        })
+  constructor(private http: HttpClient,private router: Router) {}
+  
+  loginUsers(user: { Username: string, Password: string }): Observable<any> {
+    console.log(user);
+    return this.http.post<any>(`${this.BASE_URL}login`, user).pipe(
+      tap((res) => {
+        if (res.token) {
+          localStorage.setItem('token', res.token);
+        }
+      }),
+      catchError((error) => {
+        console.error('Login error:', error);
+        return of({
+          token: '',
+          message: error.error.message || 'Login failed',
+        });
+      })
     );
-}
-
-
+  }
 
   registerUser(newUser: adduser): Observable<registerresponse> {
     console.log(newUser);
@@ -47,24 +47,54 @@ export class AuthService {
             localStorage.setItem('token', res.token);
           }
         }),
-        // catchError((error) => {
-        //   console.error('Error during registration:', error);
-        //   return of({
-        //     token: '',
-        //     user: { id: 0, username: '', email: '', password: '', role: '' },
-        //     message: error.message,
-        //   });
-        // })
+       
       );
   }
 
-  logout() {
-    localStorage.removeItem('token');
+  
+  // Check if the user is an admin
+  isAdmin(): boolean {
+    const token = localStorage.getItem('token');
+    if (token) {
+      const decodedToken = this.decodeToken(token);
+      return decodedToken?.role === 'admin';
+    }
+    return false;
   }
 
+  // Check if the user is in government role
+  isGovernment(): boolean {
+    const token = localStorage.getItem('token');
+    if (token) {
+      const decodedToken = this.decodeToken(token);
+      return decodedToken?.role === 'government';
+    }
+    return false;
+  }
+
+  // Decode JWT token (assuming JWT token structure has 'role' field)
+  private decodeToken(token: string): any {
+    const parts = token.split('.');
+    if (parts.length === 3) {
+      const payload = atob(parts[1]);
+      return JSON.parse(payload);
+    }
+    return null;
+  }
+
+  // Log out the user and clear token
+  logout(): void {
+    localStorage.removeItem('token');
+    this.router.navigate(['/login']);
+  }
+
+  // Check if the user is logged in
   isLoggedIn(): boolean {
     return !!localStorage.getItem('token');
   }
+
+
+  
 
   getToken(): string | null {
     return localStorage.getItem('token');
@@ -78,15 +108,6 @@ export class AuthService {
     }
     return null;
   }
-
-  isAdmin(): boolean {
-    return this.getUserRole() === 'admin';
-  }
-
-  isGovernment(): boolean {
-    return this.getUserRole() === 'government';
-  }
-
   isCitizen(): boolean {
     return this.getUserRole() === 'citizen';
   }

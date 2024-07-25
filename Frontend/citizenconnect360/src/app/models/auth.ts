@@ -1,16 +1,16 @@
 export interface User {
     id: number;
-    username: string;
-    email: string;
-    password: string;
-    role: string;
+    Username: string;
+    Email: string;
+    Password: string;
+    Role: string;
   }
   
   export interface adduser {
-    username: string;
-    email: string;
-    password: string;
-    role: string;
+    Username: string;
+    Email: string;
+    Password: string;
+    Role: string;
   }
   
   export interface loginresponse {
@@ -25,8 +25,8 @@ export interface User {
     message: string; // Required message property
   }
   export interface loginuser{
-    username:string,
-    password:string
+    Username:string,
+    Password:string
 
 }
   

@@ -96,11 +96,13 @@ export const approveUser = async (req: Request, res: Response) => {
     const { roleID } = req.body;
 
     try {
+        // Check if the roleID is valid
         if (roleID !== 3) {
             return res.status(403).json({ message: 'Access denied. Admins only.' });
         }
 
-        await dbHelper.exec('approveUser', { Id: parseInt(id) });
+        // Call the stored procedure to update the user's role
+        await dbHelper.exec('ApproveUser', { Id: id, RoleID: roleID });
         res.status(200).json({ message: 'User approved successfully' });
     } catch (error) {
         res.status(500).json({ message: 'Failed to approve user', error });

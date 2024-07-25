@@ -1,37 +1,43 @@
 <div class="main-container">
-  <div class="views-box" *ngFor="let view of views">
-    <div class="user-info">
-      <img src="" class="">
-      <div class="user-details">
-        <p>Username: {{ view.username }}</p>
-        <p>Location: {{ view.location }}</p>
-        <p>Role: {{ view.role }}</p>
-        <p>Created At: {{ view.createdAt | date:'short' }}</p> <!-- Format date -->
-      </div>
-    </div>
-    <div class="user-view">
-      <p>{{ view.viewText }}</p>
-    </div>
-  </div>
   <div class="input-container">
     <form [formGroup]="viewForm" (ngSubmit)="addView()">
-      <div>
+      <div class="hidden-field">
         <label for="username">Username:</label>
         <input id="username" formControlName="username" class="view-input" type="text">
       </div>
-      <div>
+      <div class="hidden-field">
         <label for="location">Location:</label>
         <input id="location" formControlName="location" class="view-input" type="text">
       </div>
-      <div>
+      <div class="hidden-field">
         <label for="role">Role:</label>
         <input id="role" formControlName="role" class="view-input" type="text">
       </div>
-      <div>
-        <label for="viewText">Type your view:</label>
-        <input id="viewText" formControlName="viewText" class="view-input" type="text">
+      <div class="type">
+        <div>
+          <!-- <label for="viewText">Type your view:</label> -->
+          <input id="viewText" formControlName="viewText" class="view-input" type="text" placeholder="Type your view">
+        </div>
+        <button class="submit-button" type="submit" [disabled]="viewForm.invalid">Submit</button>
+
       </div>
-      <button class="submit-button" type="submit" [disabled]="viewForm.invalid">Submit</button>
+      
     </form>
   </div>
+  <div class="views-box" *ngFor="let view of views; let i = index" [class.hidden]="i >= 3">
+    <div class="user-info">
+      <!-- <img src="" class="profile-picture"> -->
+      <div class="user-details">
+        <p>Username: {{ view.Username }}</p>
+        <p>Location: {{ view.Location }}</p>
+        <p>Role: {{ view.Role }}</p>
+        <p>Created At: {{ view.CreatedAt | date:'short' }}</p>
+      </div>
+    </div>
+    <div class="user-view">
+      <p>{{ view.ViewText }}</p>
+    </div>
+  </div>
+  <button class="toggle-button" (click)="toggleViews()">Show More</button>
+  
 </div>

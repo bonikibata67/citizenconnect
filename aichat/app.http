@@ -1,0 +1,17 @@
+######################
+POST http://127.0.0.1:5000/educate-chat
+Content-Type: application/json
+
+{
+    "userId" : "4aad5877-0b05-4fbd-b8a3-e108831e909b",
+    "query" : "summarize the general views for me. dont display the id and such... just  what the people are generally saying"
+}
+
+
+######################
+# get users
+GET http://127.0.0.1:5000/users
+
+######
+# get users
+GET http://127.0.0.1:5000/users

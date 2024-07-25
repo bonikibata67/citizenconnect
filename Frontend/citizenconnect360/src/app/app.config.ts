@@ -1,31 +1,33 @@
 import { ApplicationConfig, isDevMode, provideZoneChangeDetection } from '@angular/core';
 import { provideRouter } from '@angular/router';
 import { provideStore } from '@ngrx/store';
+import { reducers, metaReducers } from './reducers';
 import { provideEffects } from '@ngrx/effects';
 import { provideStoreDevtools } from '@ngrx/store-devtools';
-import { provideHttpClient, withInterceptorsFromDi,withInterceptors, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { AuthEffects } from './state/effects/auth.effects';
+import { provideHttpClient, withInterceptors} from '@angular/common/http';
+import { TokenInterceptor } from './interceptors/token';
+import { AuthGuard } from './guard/auth.guard';
 import { authReducer } from './state/reducers/auth.reducers';
-// import { LoggingInterceptor } from './interceptors/logininterceptor';
-import { FormsModule } from '@angular/forms';
+import { AuthEffects } from './state/effects/auth.effects';
 import routes from './app.routes';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { adminReducer } from './state/reducers/admin.reducers';
 
 export const appConfig: ApplicationConfig = {
   providers: [
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(routes),
-    provideHttpClient(
-      withInterceptorsFromDi()  // Ensure the interceptor is correctly added here
-    ),
+    provideHttpClient(),
     provideStore({
       auth: authReducer
+      // admin:adminReducer
     }),
     provideStoreDevtools({
       maxAge: 25,
       logOnly: !isDevMode()
     }),
     provideEffects([AuthEffects]),
-    // { provide: HTTP_INTERCEPTORS, useClass: LoggingInterceptor, multi: true }  // Register the interceptor here
+    { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true },
   ]
 };
 

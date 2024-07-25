@@ -17,9 +17,9 @@
     <div class="grid">
       <div *ngFor="let user of users$ | async" class="user-details">
         <p>ID: {{ user.id }}</p>
-        <p>Username: {{ user.username }}</p>
-        <p>Email: {{ user.email }}</p>
-        <p>Current Role: {{ user.role }}</p>
+        <p>Username: {{ user.Username }}</p>
+        <p>Email: {{ user.Email }}</p>
+        <p>Current Role: {{ user.Role }}</p>
         <div class="actions">
           <button class="approve">Approve</button>
           <button class="reject">Reject</button>
