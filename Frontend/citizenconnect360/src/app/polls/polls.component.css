@@ -1,66 +1,86 @@
+/* Main container to center everything */
 .main-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
-    background-color: rgba(54, 245, 54, 0.2); /* Light green background with 20% opacity */
-    padding: 20px;
-  }
-  
-  .polls-container {
-    width: 80%;
-    max-width: 800px;
-  }
-  
-  .polls-header {
-    /* background-color: #CCE6F4; Light blue background */
-    background-color:  #bbadff;
-    padding: 20px;
-    text-align: center;
-    border-radius: 10px;
-    margin-bottom: 20px;
-  }
-  
-  .poll {
-    /* background-color: #F2F2F7; Light grey background */
-    background-color: #CCE6F4;
-    padding: 20px;
-    margin-bottom: 20px;
-    border-radius: 10px;
-  }
-  
-  .poll h2 {
-    margin-bottom: 10px;
-  }
-  
-  .poll-options {
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .poll-option {
-    display: flex;
-    align-items: center;
-    margin-bottom: 10px;
-  }
-  
-  .poll-option input {
-    margin-right: 10px;
-  }
-  .progress-bar {
-    height: 10px;
-    border-radius: 5px;
-    margin-top: 5px;
-    background-color: #007bff; /* Default color */
-    transition: width 0.3s ease;
-  }
-  
-  
-  /* .progress-bar {
-    height: 10px;
-    border-radius: 5px;
-    margin-top: 5px;
-    transition: width 0.3s;
-  } */
-  
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: auto;
+  background-color: rgba(54, 245, 54, 0.2); /* Light green background with 20% opacity */
+  padding: 20px;
+}
+
+/* Container for all polls */
+.polls-container {
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center; 
+  /* max-width: 1200px; 
+  margin: 0 auto;  */
+}
+
+/* Header for the polls section */
+.polls-header {
+  background-color: #bbadff; /* Light purple background */
+  padding: 20px;
+  text-align: center;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  width: 80%;
+}
+/* Individual poll styling */
+.poll {
+  background-color: #CCE6F4; /* Light blue background */
+  padding: 20px;
+  margin-bottom: 20px;
+  border-radius: 10px;
+  width: 80%;
+}
+
+/* Poll title styling */
+.poll h2 {
+  margin-bottom: 10px;
+}
+
+/* Poll options container styling */
+.poll-options {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Styling for each poll option */
+.poll-option {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+/* Style for the option input */
+.poll-option input {
+  margin-right: 10px;
+}
+
+/* Progress bar container styling */
+.progress-bar {
+  width: 80%; /* Set width to 80% of the poll container */
+  background-color: #f3f3f3;
+  border-radius: 5px;
+  overflow: hidden;
+  height: 20px;
+  margin-top: 5px;
+  position: relative; /* Needed for the .fill positioning */
+}
+
+/* Fill inside the progress bar */
+.progress-bar .fill {
+  height: 100%;
+  background-color: #007bff; /* Default color */
+  border-radius: 5px 0 0 5px;
+  text-align: right;
+  padding-right: 5px;
+  color: white;
+  line-height: 20px; /* Same as progress bar height */
+  transition: width 0.3s ease;
+}
+

@@ -31,8 +31,8 @@ const routes: Routes = [
   { path: 'ReportIncident', component: ReportIncidentComponent, },  
   { path: 'educate', component: EducateComponent},  
   { path: 'incidents', component: IncidentsComponent, },
-  {path: 'admin-dashboard', component: AdminDashboardComponent, canActivate: [AdminGuard]},
-  {path: 'government-dashboard', component: GovernmentDashboardComponent, canActivate: [GovernmentGuard]},
+  {path: 'admin', component: AdminDashboardComponent},
+  {path: 'government', component: GovernmentDashboardComponent, canActivate: [GovernmentGuard]},
   { path: 'createpoll', component: CreatepollComponent },
   { path: 'Aisummary', component: AisummaryComimplements},
   { path: '**', redirectTo: 'login' }

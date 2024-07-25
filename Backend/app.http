@@ -124,7 +124,7 @@ Content-Type: application/json
 GET http://localhost:4000/api/polls
 
 ######
-DELETE http://localhost:4000/api/polls/d7dc705b-7a16-423d-985a-d138ba0823c2
+DELETE http://localhost:4000/api/polls/3fe88987-ff1b-437d-a4e1-b98470177782
 ######
 ### Add Finance Bill, 2024 Poll
 POST http://localhost:4000/api/polls

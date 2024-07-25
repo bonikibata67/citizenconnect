@@ -1,18 +1,3 @@
-// export interface PollOption {
-//   pollId: string;  // Ensure pollId is included
-//   label: string;
-//   percentage: number;
-//   votes: number;
-// }
-
-// export interface Poll {
-//   id: string;
-//   title: string;
-//   question: string;
-//   options: PollOption[];
-//   totalVotes: number;
-// }
-
 export interface PollOption {
   pollId: string;
   label: string;
@@ -25,8 +10,24 @@ export interface Poll {
   title: string;
   question: string;
   totalVotes: number;
-  pollOption: PollOption[];
+  options: PollOption[];
+  creationTime: string; // Add this line
 }
+
+// export interface PollOption {
+//   pollId: string;
+//   label: string;
+//   percentage: number;
+//   votes: number;
+// }
+
+// export interface Poll {
+//   id: string;
+//   title: string;
+//   question: string;
+//   totalVotes: number;
+//   options: PollOption[]; // Ensure it matches the backend naming
+// }
 
 // export interface PollOption {
   

@@ -17,27 +17,53 @@ import * as AdminActions from '../state/actions/admin.actions';
   styleUrls: ['./admin-dashboard.component.css'] // Corrected from styleUrl to styleUrls
 })
 export class AdminDashboardComponent implements OnInit {
-  users$: Observable<User[]>;
-  loading$: Observable<boolean>;
-  error$: Observable<string | null>;
+  users: User[] = [];
+  loading: boolean = false;
+  error: string | null = null;
   usernameToDelete: string = '';
   emailToDelete: string = '';
   roleToDelete: string = '';
   message: string = '';
 
-  constructor(private store: Store<fromAdmin.AdminState>) {
-    this.users$ = store.select(state => state.users);
-    this.loading$ = store.select(state => state.loading);
-    this.error$ = store.select(state => state.error);
-  }
+  constructor(private authService: AuthService) {}
 
   ngOnInit(): void {
-    this.store.dispatch(AdminActions.fetchUsers());
+    this.fetchUsers();
   }
 
-  deleteUser() {
-    this.store.dispatch(AdminActions.deleteUser({ username: this.usernameToDelete, email: this.emailToDelete, role: this.roleToDelete }));
+  fetchUsers(): void {
+    this.loading = true;
+    this.authService.getUsers().subscribe({
+        
+      next: (users: User[]) => {
+        this.users = users;
+        this.loading = false;
+      },
+      error: (err) => {
+        this.error = 'Failed to load users';
+        this.loading = false;
+      }
+    });
+  }
+
+  deleteUser(): void {
+    if (this.usernameToDelete && this.emailToDelete && this.roleToDelete) {
+      this.authService.deleteUser(this.usernameToDelete, this.emailToDelete, this.roleToDelete).subscribe({
+        next: (response) => {
+          if (response.success) {
+            this.message = 'User deleted successfully';
+            this.fetchUsers(); // Refresh user list
+          } else {
+            this.message = 'Failed to delete user';
+          }
+        },
+        error: (err) => {
+          this.message = 'Failed to delete user';
+        }
+      });
+    } else {
+      this.message = 'Please provide all fields to delete a user';
+    }
   }
 }
-
 

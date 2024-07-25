@@ -7,6 +7,15 @@
   padding: 5px;
   height: auto;
 }
+.views-header{
+  background-color: #bbadff; /* Light purple background */
+  padding: 20px;
+  text-align: center;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  width: 70%;
+}
+
 
 .views-box {
   display: flex;
@@ -60,7 +69,7 @@
   align-items: center;
   width: 80%;
   max-width: 800px;
-  margin-top: 20px;
+  /* margin-top: 20px; */
   gap: 10px;
 }
 .type{
@@ -108,6 +117,22 @@ label {
   border: none;
   border-radius: 5px;
   cursor: pointer;
+}
+/* Link styles for Show More and Hide */
+.toggle-links {
+  margin-top: 10px;
+}
+
+.toggle-link {
+  color: #CCE6F4; /* Light blue color for the links */
+  cursor: pointer;
+  text-decoration: none;
+  margin: 0 10px;
+}
+
+.toggle-link:hover {
+  text-decoration: none;
+  color: rgba(54, 245, 54, 0.1);
 }
 
 @media (max-width: 768px) {

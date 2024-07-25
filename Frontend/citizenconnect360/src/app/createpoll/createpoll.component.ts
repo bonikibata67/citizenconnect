@@ -44,12 +44,19 @@ export class CreatepollComponent implements OnInit {
   addPoll(): void {
     if (this.pollForm.valid) {
       const poll: Poll = {
-        id: '',  // Will be set by the backend
+        id: '', // Will be set by the backend
         title: this.pollForm.value.title,
         question: this.pollForm.value.question,
-        pollOption: this.pollForm.value.options,
-        totalVotes: 0
+        options: this.pollForm.value.options.map((opt: any) => ({
+          pollId: '', // Will be set by the backend
+          label: opt.label,
+          percentage: opt.percentage || 0,
+          votes: opt.votes || 0
+        })),
+        totalVotes: this.pollForm.value.options.reduce((total: number, opt: any) => total + opt.votes, 0),
+        creationTime: new Date().toISOString()
       };
+
       this.pollService.addPoll(poll).subscribe(() => {
         this.pollForm.reset();
         this.router.navigate(['/polls']); // Navigate to the polls page after adding poll
@@ -65,56 +72,3 @@ export class CreatepollComponent implements OnInit {
     this.options.removeAt(index);
   }
 }
-// export class CreatepollComponent implements OnInit {
-//   pollForm: FormGroup;
-
-//   constructor(
-//     private formBuilder: FormBuilder,
-//     private pollService: PollService,
-//     private router: Router
-//   ) {
-//     this.pollForm = this.formBuilder.group({
-//       title: ['', Validators.required],
-//       question: ['', Validators.required],
-//       options: this.formBuilder.array([this.createOption()])
-//     });
-//   }
-
-//   ngOnInit(): void {}
-
-//   get options(): FormArray {
-//     return this.pollForm.get('options') as FormArray;
-//   }
-
-//   createOption(): FormGroup {
-//     return this.formBuilder.group({
-//       label: ['', Validators.required],
-//       percentage: [0],
-//       votes: [0]
-//     });
-//   }
-
-//   addPoll(): void {
-//     if (this.pollForm.valid) {
-//       const poll: Poll = {
-//         id: '',  // Will be set by the backend
-//         title: this.pollForm.value.title,
-//         question: this.pollForm.value.question,
-//         pollOption: this.pollForm.value.options,
-//         totalVotes: 0
-//       };
-//       this.pollService.addPoll(poll).subscribe(() => {
-//         this.router.navigate(['/polls']); // Navigate to the polls page after adding poll
-//       });
-//     }
-//   }
-
-//   addOption(): void {
-//     this.options.push(this.createOption());
-//   }
-
-//   removeOption(index: number): void {
-//     this.options.removeAt(index);
-//   }
-
-// }

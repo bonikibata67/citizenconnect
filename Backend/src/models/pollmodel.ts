@@ -1,4 +1,3 @@
-// src/models/pollModel.ts
 import { Request } from 'express';
 
 export interface PollOption {
@@ -14,6 +13,7 @@ export interface Poll {
     question: string;
     options: PollOption[];
     totalVotes: number;
+    creationTime: Date;
 }
 
 export interface PollRequest extends Request {

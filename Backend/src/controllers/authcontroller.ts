@@ -72,6 +72,15 @@ export const loginUser = async (req: Request, res: Response) => {
         res.status(500).json({ error: 'An error occurred while processing your request' });
     }
 };
+export const getUsers = async (req: Request, res: Response) => {
+    try {
+        const users = await dbHelper.exec('GetAllUsers',{});
+        res.status(200).json(users);
+    } catch (error) {
+        console.error('Error fetching users:', error);
+        res.status(500).json({ error: 'An error occurred while fetching users' });
+    }
+};
 
 // Admin-only delete user
 export const deleteUser = async (req: Request, res: Response) => {

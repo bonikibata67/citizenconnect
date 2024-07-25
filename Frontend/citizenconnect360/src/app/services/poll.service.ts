@@ -7,20 +7,22 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root',
 })
 export class PollService {
-  private pollsSubject: BehaviorSubject<Poll[]> = new BehaviorSubject<Poll[]>(
-    []
-  );
+  private pollsSubject: BehaviorSubject<Poll[]> = new BehaviorSubject<Poll[]>([]);
   public polls$: Observable<Poll[]> = this.pollsSubject.asObservable();
 
-  private apiUrl = 'http://localhost:4000/api/polls'; // Backend API URL
+  private apiUrl = 'http://localhost:4000/api/polls';
 
   constructor(private http: HttpClient) {
-    this.fetchPolls(); // Fetch polls on initialization
+    this.fetchPolls();
   }
 
   fetchPolls(): void {
     this.http.get<Poll[]>(this.apiUrl).subscribe(
-      (polls) => this.pollsSubject.next(polls),
+      (polls) => {
+        // Sort polls by creation time (assuming the API returns them in order or includes a timestamp)
+        const sortedPolls = polls.sort((a, b) => new Date(b.creationTime).getTime() - new Date(a.creationTime).getTime());
+        this.pollsSubject.next(sortedPolls);
+      },
       (error) => console.error('Error fetching polls:', error)
     );
   }
@@ -38,8 +40,6 @@ export class PollService {
   }
 
   vote(pollId: string, optionLabel: string): Observable<void> {
-    return this.http.post<void>(`${this.apiUrl}/${pollId}/vote`, {
-      label: optionLabel,
-    });
+    return this.http.post<void>(`${this.apiUrl}/${pollId}/vote`, { label: optionLabel });
   }
 }

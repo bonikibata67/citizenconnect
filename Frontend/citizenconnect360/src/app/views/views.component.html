@@ -1,4 +1,18 @@
 <div class="main-container">
+  <div class="views-header">
+    <h1>VIEWS</h1>
+    <div class="toggle-links">
+      <a 
+        *ngIf="!showAllViews" 
+        (click)="toggleViews()" 
+        class="toggle-link">Show More</a>
+      <a 
+        *ngIf="showAllViews" 
+        (click)="toggleViews()" 
+        class="toggle-link">Hide</a>
+    </div>
+  </div>
+
   <div class="input-container">
     <form [formGroup]="viewForm" (ngSubmit)="addView()">
       <div class="hidden-field">
@@ -15,7 +29,7 @@
       </div>
       <div class="type">
         <div>
-          <!-- <label for="viewText">Type your view:</label> -->
+          
           <input id="viewText" formControlName="viewText" class="view-input" type="text" placeholder="Type your view">
         </div>
         <button class="submit-button" type="submit" [disabled]="viewForm.invalid">Submit</button>
@@ -24,6 +38,8 @@
       
     </form>
   </div>
+
+
   <div class="views-box" *ngFor="let view of views; let i = index" [class.hidden]="i >= 3">
     <div class="user-info">
       <!-- <img src="" class="profile-picture"> -->
@@ -38,6 +54,6 @@
       <p>{{ view.ViewText }}</p>
     </div>
   </div>
-  <button class="toggle-button" (click)="toggleViews()">Show More</button>
-  
+  <!-- <button class="toggle-button" (click)="toggleViews()">Show More</button>
+   -->
 </div>
